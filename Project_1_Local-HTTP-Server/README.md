@@ -1,4 +1,4 @@
-Goal:
+## Goal:
 Deploy a basic HTTP server on my local machine using a simple automation script. This, I think, will lay the groundwork for understanding infrastructure provisioning and prepare me to use tools like Ansible, Terraform, and Docker.
 
 
