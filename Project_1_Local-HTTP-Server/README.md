@@ -3,7 +3,9 @@ Deploy a basic HTTP server on my local machine using a simple automation script.
 
 ## Project Layout
 scripts/: Contains automation and server code
+
 config/: HTML content served by the server
+
 tests/: Basic tests to check server status
 
 
