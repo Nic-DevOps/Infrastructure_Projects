@@ -15,3 +15,8 @@ cd scripts
 bash start_server.sh
 ```
 Then visit: http://localhost:8000
+
+
+
+# Results
+![image](https://github.com/user-attachments/assets/42e69932-4bb3-4a26-bac0-02a8706896de)
