@@ -1,0 +1,18 @@
+
+# Initialize Vagrant configuration using version 2 syntax.
+# This is the standard version used in most modern Vagrant projects.
+Vargrant.configure("2") do | config |
+    # Defines the base image that will be used
+    config.vm.box = "ubuntu/bionic64"
+
+# Set the hostname for the VM (useful for network identity inside the guest).
+config.vm. hostname = "apache-server"
+
+# Forward port 80 (Apache's default port inside the VM)
+# to port 8080 on the host machine, so you can access the web server at http://localhost:8080
+config.vm.network "forwarded_port", guest: 80, host: 8080
+
+# Provision the VM using a shell script (bootstrap.sh)
+# The script installs and configures the Apache HTTP server.
+config.vm.provision "shell", path: "bootstrap.sh"
+end
