@@ -1,3 +1,4 @@
+
 # This is the readme for Project 2
 
 This project provisions an Ubuntu 18.04 virtual machine using Vagrant and VirtualBox, and automatically installs and configures an Apache HTTP server using a bootstrap.sh
