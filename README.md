@@ -18,7 +18,7 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 - Tools Used: Vagrant, Nginx, shell script
 - Key Concepts: Web server setup, VM provisioning, basic automation
 
-# Upcoming Projects
+# 🔜 Planned Projects
 ## Project 4: Local VM + Ansible 
 - Goal: Provision a VM and configure it using Ansible instead of shell scripts. 
 - Concepts: Configutation Management, idempotency, inventory files
