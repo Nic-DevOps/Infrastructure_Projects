@@ -17,3 +17,38 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 - Description: Provisioned a VM via Vagrant and installed/configured Nginx to serve a static site.
 - Tools Used: Vagrant, Nginx, shell script
 - Key Concepts: Web server setup, VM provisioning, basic automation
+
+
+## Project 4: Local VM + Ansible 
+- Goal: Provision a VM and configure it using Ansible instead of shell scripts. 
+- Concepts: Configutation Management, idempotency, inventory files
+
+## Project 5: GCP HTTP Server (Terraform + Ansible)
+- Goal: Deploy an HTTP server on Google Cloud using Terraform for infrastructure and Ansible for configuration.
+
+- Concepts: Infrastructure as Code (IaC), cloud provisioning, Ansible remote provisioning
+
+## Project 6: Dockerized Web App + Local Compose
+- Goal: Containerize the HTTP server and run it using Docker Compose.
+
+- Concepts: Containers, networking between services, persistent volumes
+
+## Project 7: CI/CD Pipeline with GitHub Actions
+- Goal: Automatically build and deploy a Dockerized web app to a staging server or container registry.
+
+- Concepts: Continuous Integration, test/build/deploy automation
+
+## Project 8: Kubernetes (Minikube) + Helm
+- Goal: Deploy a multi-service app using Kubernetes locally with Helm charts.
+
+- Concepts: Container orchestration, scaling, service discovery
+
+## Project 9: Remote Monitoring + Logging
+- Goal: Set up logging and monitoring (e.g., Prometheus + Grafana) for deployed services.
+
+- Concepts: Observability, metrics, alerting
+
+## Project 10: Full Cloud IaC Stack
+- Goal: Combine everything—deploy a multi-service app to GCP/AWS using Terraform, Helm, and GitHub Actions.
+
+- Concepts: Production-grade infrastructure, security, modular architecture
