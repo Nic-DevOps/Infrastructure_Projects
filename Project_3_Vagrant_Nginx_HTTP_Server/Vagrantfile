@@ -8,7 +8,7 @@ Vagrant.configure("2") do | config |
     config.vm.hostname = "nginx-server"
 
     # Forward the vm port 80 (nvinx default) to the host port 8080
-    config.vm.network "forward_port", guest: 80, host: 8080
+    config.vm.network "forwarded_port", guest: 80, host: 8080
 
     # Provision the VM using the bootstap script
     config.vm.provision "shell", path: "bootstrap.sh"
