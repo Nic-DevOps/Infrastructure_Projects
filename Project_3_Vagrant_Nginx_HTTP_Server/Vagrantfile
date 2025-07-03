@@ -1,0 +1,21 @@
+# We are taking much of the same code from Project 2
+
+Vagrant.configure("2") do | config |
+    # This will use the official Ubuntu 18.04 
+    config.vm.box = "ubuntu/bionic64"
+
+    # Give the VM a name
+    config.vm.hostname = "nginx-server"
+
+    # Forward the vm port 80 (nvinx default) to the host port 8080
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+
+    # Provision the VM using the bootstap script
+    config.vm.provision "shell", path: "bootstrap.sh"
+
+    # Optional: Set a specific amount of memory and CPU if desired
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = 512
+        vb.cpus = 1
+  end
+end
