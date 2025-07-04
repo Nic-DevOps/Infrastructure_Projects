@@ -1,0 +1,11 @@
+# This is the main playbook. It targets the web group and runs the common role:
+---
+- name: Configure local VM with Ansible
+  # Targets the group named [web] in your inventory file
+  hosts: web
+  # Escalates to root using sudo for tasks that require elevated privileges
+  become: yes
+  # This tells Ansible to run the role located at roles/common/
+  # It will look for tasks in roles/common/tasks/main.yml by default
+  roles:
+    - common
