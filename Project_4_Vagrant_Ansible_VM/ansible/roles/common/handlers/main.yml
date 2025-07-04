@@ -1,0 +1,7 @@
+---
+# This handler is only triggered if a task calls notify: Restart NGINX.
+- name: Restart NGINX
+  service:
+    name: nginx
+    state: restarted
+
