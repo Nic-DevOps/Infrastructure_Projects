@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define project root inside the infrastructure_projects directory
-ROOT_DIR="infrastructure_projects"
+ROOT_DIR="Infrastructure_Projects"
 PROJECT_NAME="Project_5_GCP_HTTP_Server"
 PROJECT_ROOT="$ROOT_DIR/$PROJECT_NAME"
 
