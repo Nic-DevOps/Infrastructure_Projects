@@ -76,15 +76,6 @@ Check out `tests/test_script_explained.md` for command breakdowns.
 
 ---
 
-## 📚 Learning Reflections
-
-See `notes.md` for:
-- What you learned from this project
-- Possible enhancements or future versions
-- Questions or bugs encountered
-
----
-
 ## 📦 Next Steps
 
 Future projects will build on this by adding:
