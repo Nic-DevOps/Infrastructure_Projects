@@ -1,24 +1,96 @@
-## Goal:
-Deploy a basic HTTP server on my local machine using a simple automation script. This, I think, will lay the groundwork for understanding infrastructure provisioning and prepare me to use tools like Ansible, Terraform, and Docker.
+# Project 1: Local HTTP Server
 
-## Project Layout
-scripts/: Contains automation and server code
+This project sets up a basic HTTP server on your local machine using Python and a Bash script. It's the first step in a larger Infrastructure as Code (IaC) progression, helping you understand local service provisioning, scripting, and basic automation.
 
-config/: HTML content served by the server
+---
 
-tests/: Basic tests to check server status
+## 🚀 Purpose
 
+- Deploy a simple local web server using minimal tools
+- Learn foundational scripting for automation
+- Set up a reproducible file structure for future projects
 
-## Run Instructions
-```bash
-cd scripts
-bash start_server.sh
+---
+
+## 🗂️ Project Structure
+
+```plaintext
+project-01-local-http-server/
+├── config/
+│   └── index.html              # Static web page served by the server
+├── scripts/
+│   ├── start_server.sh         # Bash script to start the server
+│   └── http_server.py (optional) # Alternative manual server in Python
+├── tests/
+│   ├── curl_test.sh            # Script to verify if the server is running
+│   └── test_script_explained.md # Explanation of key commands used in tests
+├── README.md                   # This file
+├── notes.md                    # Reflections and follow-up ideas
 ```
-Then visit: http://localhost:8000
 
+---
 
+## ⚙️ Prerequisites
 
-# Results
-![image](https://github.com/user-attachments/assets/ec575896-ffcd-4b69-a9fa-d9f28109644f)
+- Python 3.x installed (`python3 --version`)
+- Bash-compatible shell (Git Bash, WSL, or macOS/Linux)
+- (Optional) `curl` installed for testing
 
-![image](https://github.com/user-attachments/assets/42e69932-4bb3-4a26-bac0-02a8706896de)
+---
+
+## 🛠️ How to Run
+
+### 1. Start the Server
+
+```bash
+bash scripts/start_server.sh
+```
+
+This serves files from the `config/` directory on port `8000`.
+
+### 2. Open in Your Browser
+
+Go to: [http://localhost:8000](http://localhost:8000)
+
+You should see the contents of `config/index.html`.
+
+### 3. Run a Test (Optional)
+
+To verify the server is live using `curl`:
+
+```bash
+bash tests/curl_test.sh
+```
+
+---
+
+## 🧪 Troubleshooting
+
+### Exit Code 49?
+
+This may indicate:
+- A firewall or antivirus blocking Python from opening the port
+- Port `8000` already in use (try `PORT=8081` in the script)
+- Python not correctly installed or missing permissions
+
+Check out `tests/test_script_explained.md` for command breakdowns.
+
+---
+
+## 📚 Learning Reflections
+
+See `notes.md` for:
+- What you learned from this project
+- Possible enhancements or future versions
+- Questions or bugs encountered
+
+---
+
+## 📦 Next Steps
+
+Future projects will build on this by adding:
+- Configuration management with Ansible
+- Cloud infrastructure provisioning (e.g., Terraform + GCP)
+- Containerization and orchestration
+
+Stay tuned.
