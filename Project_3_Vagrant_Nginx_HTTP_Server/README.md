@@ -72,17 +72,6 @@ You should see a custom success message served by Nginx.
   - GitHub repo link
   - Future project goals
 - Added optional inline CSS styling for a polished look
-
-### ✅ Git & Remote Changes
-- Renamed remote `origin` to `github` using:
-  ```bash
-  git remote rename origin github
-  ```
-- Deleted an old unused remote branch (`fix-script`) with:
-  ```bash
-  git push github --delete fix-script
-  ```
-
 ---
 
 ## 🔍 Testing Tips
@@ -106,7 +95,6 @@ You should see a custom success message served by Nginx.
 ## 📌 Future Improvements
 
 - Add SSL support using Let's Encrypt
-- Replace shell script with Ansible provisioning
 - Configure reverse proxy to serve a dynamic app (e.g. Flask or Node.js)
 - Monitor Nginx using systemd or custom health checks
 
