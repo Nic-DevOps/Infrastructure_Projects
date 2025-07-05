@@ -1,0 +1,22 @@
+---
+- name: Ensure apt cache is updated
+  apt:
+    update_cache: yes
+
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+
+- name: Copy custom index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+  notify: Restart NGINX
+  # This calls the handler below *if* this task results in a file change
+
+- name: Ensure NGINX is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
