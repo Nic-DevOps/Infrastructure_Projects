@@ -25,7 +25,6 @@ project-01-local-http-server/
 │   ├── curl_test.sh            # Script to verify if the server is running
 │   └── test_script_explained.md # Explanation of key commands used in tests
 ├── README.md                   # This file
-├── notes.md                    # Reflections and follow-up ideas
 ```
 
 ---
