@@ -28,35 +28,36 @@ This project provisions a virtual machine (VM) on Google Cloud using **Terraform
 ---
 
 ## 📁 Directory Structure
-
-- \`Project_5_GCP_HTTP_Server/\`
-  - \`terraform/\`
-    - \`main.tf\`
-    - \`variables.tf\`
-    - \`outputs.tf\`
-  - \`ansible/\`
-    - \`inventory.ini\`
-    - \`playbook.yml\`
-    - \`roles/\`
-      - \`webserver/\`
-        - \`tasks/\`
-          - \`main.yml\`
-        - \`handlers/\`
-          - \`main.yml\`
-  - \`files/\`
-    - \`index.html\`
-  - \`README.md\`
+```plaintext
+Project_5_GCP_HTTP_Server/
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+├── ansible/
+│   ├── inventory.ini
+│   ├── playbook.yml
+│   └── roles/
+│       └── webserver/
+│           ├── tasks/
+│           │   └── main.yml
+│           └── handlers/
+│               └── main.yml
+├── files/
+│   └── index.html
+├── README.md
+```
 ---
 
 ## ✅ Usage Instructions
 
 ### 1. Terraform – Provision Infrastructure
 
-\`\`\`bash
+```bash
 cd terraform
 terraform init
 terraform apply
-\`\`\`
+```
 
 > Be sure to pass \`project_id\` and confirm the plan before proceeding.
 
@@ -66,10 +67,10 @@ terraform apply
 2. Add the IP to \`ansible/inventory.ini\`.
 3. Run:
 
-\`\`\`bash
+```bash
 cd ../ansible
 ansible-playbook -i inventory.ini playbook.yml
-\`\`\`
+```
 
 ---
 
