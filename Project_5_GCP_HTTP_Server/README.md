@@ -29,26 +29,23 @@ This project provisions a virtual machine (VM) on Google Cloud using **Terraform
 
 ## 📁 Directory Structure
 
-\`\`\`
-Project_5_GCP_HTTP_Server/
-├── terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-├── ansible/
-│   ├── inventory.ini
-│   ├── playbook.yml
-│   └── roles/
-│       └── webserver/
-│           ├── tasks/
-│           │   └── main.yml
-│           └── handlers/
-│               └── main.yml
-├── files/
-│   └── index.html
-├── README.md
-\`\`\`
-
+- \`Project_5_GCP_HTTP_Server/\`
+  - \`terraform/\`
+    - \`main.tf\`
+    - \`variables.tf\`
+    - \`outputs.tf\`
+  - \`ansible/\`
+    - \`inventory.ini\`
+    - \`playbook.yml\`
+    - \`roles/\`
+      - \`webserver/\`
+        - \`tasks/\`
+          - \`main.yml\`
+        - \`handlers/\`
+          - \`main.yml\`
+  - \`files/\`
+    - \`index.html\`
+  - \`README.md\`
 ---
 
 ## ✅ Usage Instructions
