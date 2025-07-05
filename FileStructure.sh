@@ -1,9 +1,18 @@
 #!/bin/bash
 
-# Define project root inside the infrastructure_projects directory
-ROOT_DIR="Infrastructure_Projects"
+# Confirm we're in Infrastructure_Projects directory
+EXPECTED_DIR="Infrastructure_Projects"
+CURRENT_DIR_NAME=$(basename "$PWD")
+
+if [ "$CURRENT_DIR_NAME" != "$EXPECTED_DIR" ]; then
+  echo "Error: Please run this script from inside the '$EXPECTED_DIR' directory."
+  echo "Current directory: $CURRENT_DIR_NAME"
+  exit 1
+fi
+
+# Define project name and root
 PROJECT_NAME="Project_5_GCP_HTTP_Server"
-PROJECT_ROOT="$ROOT_DIR/$PROJECT_NAME"
+PROJECT_ROOT="./$PROJECT_NAME"
 
 # Create folder structure
 mkdir -p "$PROJECT_ROOT/terraform"
@@ -24,4 +33,4 @@ touch "$PROJECT_ROOT/ansible/roles/webserver/handlers/main.yml"
 touch "$PROJECT_ROOT/files/index.html"
 touch "$PROJECT_ROOT/README.md"
 
-echo "Project 5 directory structure created successfully in $PROJECT_ROOT."
+echo "✅ Project 5 directory structure created successfully in $PROJECT_ROOT"
