@@ -9,3 +9,14 @@
   # It will look for tasks in roles/common/tasks/main.yml by default
   roles:
     - common
+
+- name: Show success message with NGINX IP
+  hosts: web
+  gather_facts: no
+  tasks:
+    - name: Output NGINX access instructions
+      debug:
+        msg: |
+          🚀 Provisioning complete!
+          You can now access the web server at: http://192.168.56.10
+
