@@ -17,11 +17,12 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 - Description: Provisioned a VM via Vagrant and installed/configured Nginx to serve a static site.
 - Tools Used: Vagrant, Nginx, shell script
 - Key Concepts: Web server setup, VM provisioning, basic automation
-
-# 🔜 Planned Projects
 ## Project 4: Local VM + Ansible 
 - Goal: Provision a VM and configure it using Ansible instead of shell scripts. 
 - Concepts: Configutation Management, idempotency, inventory files
+
+
+# 🔜 Planned Projects
 
 ## Project 5: GCP HTTP Server (Terraform + Ansible)
 - Goal: Deploy an HTTP server on Google Cloud using Terraform for infrastructure and Ansible for configuration.
