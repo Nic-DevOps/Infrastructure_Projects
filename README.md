@@ -8,12 +8,12 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 - Tools Used: Python, shell script
 - Key Concepts: Basic HTTP server, local networking, scripting
 
-## Project 2: Vagrant HTTP Server
+## [Project 2: Apache HTTP Server with Vagrant](../Project-2-Vagrant-HTTP-Server)
 - Description: Spun up a local VM with an HTTP server using Vagrant.
 - Tools Used: Vagrant, shell script provisioning
 - Key Concepts: Virtualization, automated provisioning, shell scripting
 
-## Project 3: Vagrant + Nginx HTTP Server
+## Project 3: Vagrant + Nginx HTTP Server 
 - Description: Provisioned a VM via Vagrant and installed/configured Nginx to serve a static site.
 - Tools Used: Vagrant, Nginx, shell script
 - Key Concepts: Web server setup, VM provisioning, basic automation
