@@ -1,0 +1,7 @@
+# Playbook to install Nginx and deploy index.html
+---
+- name: Configure Nginx web server
+  hosts: web
+  become: true
+  roles:
+    - webserver
