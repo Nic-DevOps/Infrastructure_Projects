@@ -126,40 +126,25 @@ You should see your custom web page.
 - An SSH key must be available and provisioned with the instance for Ansible access.
 
 
-Linux file permission notation
-🔢 Linux File Permission Mode: '0644'
-The mode is a three-digit octal number that sets:
+### Linux file permission notation
+#### 📎 Linux File Permission Explanation (e.g. for `index.html`)
 
-Octal Digit	Who it applies to
-1st (6)	Owner (user)
-2nd (4)	Group
-3rd (4)	Others (everyone else)
+| Permission | Symbol | Value |
+|------------|--------|-------|
+| Read       | `r`    | 4     |
+| Write      | `w`    | 2     |
+| Execute    | `x`    | 1     |
 
-Each digit is a sum of permission bits:
+A mode of `0644` means:
 
-Permission	Value	Meaning
-Read	4	Can view
-Write	2	Can edit
-Execute	1	Can run (like a script)
+- **Owner**: Read + Write (`rw-`)
+- **Group**: Read only (`r--`)
+- **Others**: Read only (`r--`)
 
-🔐 '0644' Explained
-Role	Permissions	Value	Meaning
-Owner	rw-	6	Read + Write
-Group	r--	4	Read only
-Others	r--	4	Read only
+This is ideal for static web content like `index.html`, where:
 
-So, '0644' means:
-
-The file owner can read and write the file
-
-Everyone else (group and others) can only read it
-
-This is perfect for web content like index.html, where:
-
-The system/web server (owner) needs to write/manage it
-
-Visitors (via Nginx) only need to read it
-
+- The system or web server (owner) can write/manage the file.
+- Everyone else (like visitors via Nginx) can only read it.
 
 ---
 
