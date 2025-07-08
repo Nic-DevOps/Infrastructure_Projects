@@ -11,7 +11,8 @@
     dest: /var/www/html/index.html
     owner: www-data
     group: www-data
-    mode: '0644'
+    mode: '0644' # See [readme.md](https://github.com/Nic-DevOps/Infrastructure_Projects/tree/project_5/Project_5_GCP_HTTP_Server#-linux-file-permission-explanation-eg-for-indexhtml)
+
 
 - name: Ensure Nginx is started and enabled
   service:
