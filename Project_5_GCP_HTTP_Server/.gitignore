@@ -1,0 +1,11 @@
+# Ignore state files and working directory
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform/
+
+# Ignore Ansible retry files
+*.retry
+
+# Optional: ignore SSH keypairs (only if project-specific and stored here)
+*.pem
+*.pub

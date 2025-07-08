@@ -1,82 +1,51 @@
-# Configure the Google Cloud provider
+# Configure the Google Cloud provider using variables
 provider "google" {
-  # Use your local gcloud credentials for authentication
   credentials = file("~/.config/gcloud/application_default_credentials.json")
-
-  # Specify your GCP project ID
-  project = "project-5-terraform-ansible"
-
-  # Region to deploy resources in
-  region  = "us-central1"
-
-  # Specific zone within the region
-  zone    = "us-central1-a"
+  project     = var.project_id
+  region      = var.region
+  zone        = var.zone
 }
 
-# Create a Compute Engine VM instance
+# Create the compute instance (Ubuntu VM)
 resource "google_compute_instance" "web" {
-  # Name of the VM
   name         = "webserver-instance"
-
-  # Machine type (e2-micro is free-tier eligible)
   machine_type = "e2-micro"
+  zone         = var.zone
 
-  # Zone to deploy this VM
-  zone         = "us-central1-a"
-
-  # Add network tags (used by firewall rules)
   tags = ["http-server", "ssh"]
 
-  # Configure the boot disk
   boot_disk {
     initialize_params {
-      # Use Ubuntu 22.04 LTS image
       image = "ubuntu-os-cloud/ubuntu-2204-lts"
     }
   }
 
-  # Configure the network interface
   network_interface {
-    # Use the default VPC network
-    network = "default"
-
-    # Create an ephemeral public IP for external access
-    access_config {}
+    network       = "default"
+    access_config {} # Ephemeral public IP
   }
 
-  # Inject your public SSH key for the 'ubuntu' user
   metadata = {
-    # Format: USERNAME:PUBLIC_KEY
-    ssh-keys = "ubuntu:${file("~/.ssh/project5_key.pub")}"
+    ssh-keys = "ubuntu:${file(var.ssh_pub_key_path)}"
   }
 }
 
-# Create a firewall rule to allow HTTP traffic on port 80
+# Open firewall access for HTTP (port 80)
 resource "google_compute_firewall" "allow_http" {
-  # Unique name for the firewall rule
   name    = "allow-http"
-
-  # Apply rule to the default VPC network
   network = "default"
 
-  # Allow TCP traffic on port 80
   allow {
     protocol = "tcp"
     ports    = ["80"]
   }
 
-  # Target instances with this network tag
-  target_tags = ["http-server"]
-
-  # Inbound traffic only
-  direction = "INGRESS"
-
-  # Allow from any IP (worldwide access)
+  direction     = "INGRESS"
   source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["http-server"]
 }
 
-# Output the external IP of the instance after creation
+# Output the VM's external IP
 output "external_ip" {
-  # Gets the first external IP address of the instance
   value = google_compute_instance.web.network_interface[0].access_config[0].nat_ip
 }
