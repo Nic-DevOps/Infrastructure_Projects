@@ -104,9 +104,8 @@ ansible-playbook -i inventory.ini playbook.yml
 
 ## 🌐 Access the Web Server
 
-Visit:
-```http://<EXTERNAL_IP>
-```
+Visit: `http://<EXTERNAL_IP>`
+
 You should see your custom web page.
 ---
 
