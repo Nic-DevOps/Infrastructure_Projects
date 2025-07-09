@@ -1,0 +1,17 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  web:
+    build: .  # Builds the image using the Dockerfile in the current directory
+    ports:
+      - "8080:80"  # Exposes port 8080 on the host, mapped to port 80 in the container (NGINX)
+    volumes:
+      - ./app:/usr/share/nginx/html:ro  # Mounts the local app/ directory into the container as read-only
+    networks:
+      - webnet  # Connects this service to the custom network 'webnet'
+
+networks:
+  webnet:
+    driver: bridge  # Uses the default bridge network driver
