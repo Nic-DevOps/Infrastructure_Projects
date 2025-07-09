@@ -14,10 +14,11 @@ Containerize the HTTP server and run it using Docker Compose.
 ```plaintext
 Project_6_Docker_WebApp/
 ├── app/
-│   ├── index.html
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
+│   └── index.html               # Static HTML file served by NGINX
+├── Dockerfile                   # Builds the NGINX image with custom content
+├── docker-compose.yml           # Orchestrates the containerized web app
+├── README.md                    # Project documentation
+└── .gitignore                   # Optional: ignore build artifacts and volumes
 ```
 
 ---
@@ -53,21 +54,27 @@ FROM nginx:alpine
 COPY ./app /usr/share/nginx/html
 ```
 
+> ✅ **About the base image**: `nginx:alpine` is pulled from [Docker Hub](https://hub.docker.com/_/nginx), the default public container registry. Alpine is a lightweight Linux distribution (~5MB), making the resulting container small and fast. Docker will pull the image if it’s not cached locally.
+
 ### 4. Create `docker-compose.yml`
 ```yaml
+# docker-compose.yml
+
 version: '3.8'
+
 services:
   web:
-    build: .
+    build: .  # Builds the image using the Dockerfile in the current directory
     ports:
-      - "8080:80"
+      - "8080:80"  # Exposes port 8080 on the host, mapped to port 80 in the container (NGINX)
     volumes:
-      - ./app:/usr/share/nginx/html:ro
+      - ./app:/usr/share/nginx/html:ro  # Mounts the local app/ directory into the container as read-only
     networks:
-      - webnet
+      - webnet  # Connects this service to the custom network 'webnet'
 
 networks:
   webnet:
+    driver: bridge  # Uses the default bridge network driver
 ```
 
 ---
@@ -88,6 +95,18 @@ http://localhost:8080
 ```bash
 docker-compose down
 ```
+
+---
+
+## 🛋️ Understanding Docker Compose Networks
+Docker Compose allows services (containers) to communicate over user-defined networks. This project uses a custom network called `webnet`.
+
+### Why it matters:
+- Containers can **refer to each other by service name** (like `web`, `db`, `backend`).
+- They are **isolated from unrelated services** unless added to the same network.
+- The `bridge` driver creates an **internal virtual network** that connects services securely on the same host.
+
+Even though this project only has one service (`web`), adding others (like a backend API or database) later will let them talk directly via this network. This is a core concept in microservice architecture and multi-container apps.
 
 ---
 
