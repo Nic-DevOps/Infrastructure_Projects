@@ -26,13 +26,12 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 
 - Concepts: Infrastructure as Code (IaC), cloud provisioning, Ansible remote provisioning
 
-# 🔜 Planned Projects
-
-
-## Project 6: Dockerized Web App + Local Compose
+## [Project 6: Dockerized Web App + Local Compose](https://github.com/Nic-DevOps/Infrastructure_Projects/tree/main/Project_6_Docker_WebApp)
 - Goal: Containerize the HTTP server and run it using Docker Compose.
 
 - Concepts: Containers, networking between services, persistent volumes
+
+# 🔜 Planned Projects
 
 ## Project 7: CI/CD Pipeline with GitHub Actions
 - Goal: Automatically build and deploy a Dockerized web app to a staging server or container registry.

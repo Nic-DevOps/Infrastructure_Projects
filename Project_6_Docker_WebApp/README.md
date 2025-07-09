@@ -27,7 +27,7 @@ Project_6_Docker_WebApp/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/<your-username>/Infrastructure_Projects.git
+git clone https://github.com/Nic-DevOps/Infrastructure_Projects/
 cd Infrastructure_Projects/Project_6_Docker_WebApp
 ```
 
