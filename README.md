@@ -33,13 +33,13 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 
 # 🔜 Planned Projects
 
-## Project 7: CI/CD Pipeline with GitHub Actions
+## Project 7 Multi-Cloud VM Provisioner
+- Goal: Provision and manage virtual machines (VMs) across **Google Cloud (GCP)**, **Amazon Web Services (AWS)**, and **Oracle Cloud Infrastructure (OCI)**
+
+## Project 8: CI/CD Pipeline with GitHub Actions
 - Goal: Automatically build and deploy a Dockerized web app to a staging server or container registry.
 
 - Concepts: Continuous Integration, test/build/deploy automation
-
-
-## Project 8 Multi-Cloud VM Provisioner
 
 
 
