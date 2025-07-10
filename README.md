@@ -38,17 +38,31 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 
 - Concepts: Continuous Integration, test/build/deploy automation
 
-## Project 8: Kubernetes (Minikube) + Helm
+
+## Project 8 Multi-Cloud VM Provisioner
+
+
+
+## Project 9: Kubernetes (Minikube) + Helm
 - Goal: Deploy a multi-service app using Kubernetes locally with Helm charts.
 
 - Concepts: Container orchestration, scaling, service discovery
 
-## Project 9: Remote Monitoring + Logging
+## Project 10: Remote Monitoring + Logging
 - Goal: Set up logging and monitoring (e.g., Prometheus + Grafana) for deployed services.
 
 - Concepts: Observability, metrics, alerting
 
-## Project 10: Full Cloud IaC Stack
+## Project 11: Full Cloud IaC Stack
 - Goal: Combine everything—deploy a multi-service app to GCP/AWS using Terraform, Helm, and GitHub Actions.
 
 - Concepts: Production-grade infrastructure, security, modular architecture
+
+
+
+# Phase 2
+
+## Project G
+
+
+## Project K
