@@ -1,1 +1,5 @@
-terraform.tfvars.envrc
+# Ignore credentials
+*.json
+terraform.tfvars
+gcp-key.json
+.envrc
