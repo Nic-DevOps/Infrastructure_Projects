@@ -34,7 +34,7 @@ MultiCloud_VM_Provisioner/
 ├── modules/
 │   ├── vm_gcp/
 │   ├── vm_aws/
-│   └── vm_oci/
+│   └── vm_az/
 ├── inventory/
 │   └── ssh_config (generated or used by Ansible)
 └── README.md
