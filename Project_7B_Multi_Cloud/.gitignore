@@ -1,0 +1,46 @@
+# =============================================================================
+# Terraform files
+# =============================================================================
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+terraform.tfplan
+terraform.tfplan.json
+
+# Crash log files
+crash.log
+crash.*.log
+
+# SSH Keys
+*.pem
+*.key
+id_rsa*
+*.pub
+!configs/ssh-keys/README.md
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
