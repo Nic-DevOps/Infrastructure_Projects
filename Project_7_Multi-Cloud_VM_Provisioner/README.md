@@ -2,7 +2,7 @@
 
 ## 🎯 Goal
 
-Provision and manage virtual machines (VMs) across **Google Cloud (GCP)**, **Amazon Web Services (AWS)**, and **Oracle Cloud Infrastructure (OCI)** using a unified, modular Infrastructure as Code (IaC) workflow powered by **Terraform**.
+Provision and manage virtual machines (VMs) across **Google Cloud (GCP)**, **Amazon Web Services (AWS)**, and **Microsoft Azure** using a unified, modular Infrastructure as Code (IaC) workflow powered by **Terraform**.
 
 ---
 
