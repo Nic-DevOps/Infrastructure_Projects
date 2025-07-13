@@ -55,3 +55,17 @@ variable "root_volume_type" {
   type        = string
   default     = "pd-standard"
 }
+variable "machine_type" {
+  description = "The machine type for the GCP VM"
+  type        = string
+}
+
+variable "zone" {
+  description = "The GCP zone to deploy the VM into"
+  type        = string
+}
+
+variable "network_cidr_block" {
+  description = "CIDR block for the GCP VPC network"
+  type        = string
+}

@@ -168,14 +168,19 @@ check_auth() {
         fi
     fi
     
-    # GCP
+    # Google Cloud CLI
     if command -v gcloud &> /dev/null; then
-        if gcloud auth list --filter=status:ACTIVE --format="value(account)" | head -1 &> /dev/null; then
-            log_success "GCP authentication configured"
+        GCLOUD_VERSION=$(gcloud version | grep -i "google cloud sdk" | awk '{print $NF}')
+        if [[ -n "$GCLOUD_VERSION" ]]; then
+            log_success "Google Cloud CLI: $GCLOUD_VERSION"
         else
-            log_warning "GCP authentication not configured"
+            log_warning "Google Cloud CLI is installed, but version could not be determined"
         fi
+    else
+        log_warning "Google Cloud CLI not found (optional)"
     fi
+
+
 }
 
 # Main validation function

@@ -5,7 +5,7 @@ resource "tls_private_key" "ssh_key" {
 
 module "aws_vm" {
   count = var.deploy_aws ? 1 : 0
-  source = "./modules/aws-vm"
+  source = "./modules/aws_vm"
 
   instance_name = local.instance_names.aws
   instance_type = var.aws_instance_type
@@ -22,7 +22,7 @@ module "aws_vm" {
 
 module "azure_vm" {
   count = var.deploy_azure ? 1 : 0
-  source = "./modules/azure-vm"
+  source = "./modules/azure_vm"
 
   instance_name = local.instance_names.azure
   vm_size       = var.azure_vm_size
@@ -40,7 +40,7 @@ module "azure_vm" {
 
 module "gcp_vm" {
   count = var.deploy_gcp ? 1 : 0
-  source = "./modules/gcp-vm"
+  source = "./modules/gcp_vm"
 
   instance_name = local.instance_names.gcp
   machine_type  = var.gcp_machine_type

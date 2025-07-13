@@ -340,5 +340,3 @@ For support and questions:
 - **v1.2.0**: Enhanced security features and monitoring
 
 ---
-
-**Made with ❤️ by the DevOps Team**

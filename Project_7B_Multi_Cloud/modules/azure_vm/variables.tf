@@ -14,6 +14,15 @@ variable "location" {
   type        = string
   default     = "East US"
 }
+variable "vm_size" {
+  description = "The size of the Azure virtual machine"
+  type        = string
+}
+
+variable "vnet_cidr_block" {
+  description = "CIDR block for the Azure virtual network"
+  type        = string
+}
 
 variable "vpc_cidr_block" {
   description = "CIDR block for the VNet"
