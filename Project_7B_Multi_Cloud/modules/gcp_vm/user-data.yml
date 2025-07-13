@@ -1,0 +1,44 @@
+#cloud-config
+users:
+  - name: ${ssh_username}
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - curl
+  - wget
+  - git
+  - htop
+  - vim
+  - unzip
+  - docker.io
+  - docker-compose
+
+runcmd:
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker ${ssh_username}
+  - echo "VM provisioning completed at $(date)" >> /var/log/cloud-init-completion.log
+
+write_files:
+  - path: /etc/motd
+    content: |
+      Welcome to your Multi-Cloud VM (GCP)!
+      
+      This instance was provisioned using Terraform.
+      
+      Instance Details:
+      - Provider: Google Cloud Platform (GCP)
+      - Region: ${gcp_region}
+      - Zone: ${zone}
+      - Instance Type: ${instance_type}
+      - Image: ${image}
+      
+      For support, check the project documentation.
+    permissions: '0644'
+
+final_message: "System boot completed in $UPTIME seconds"
