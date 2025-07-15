@@ -12,7 +12,7 @@ Provision and manage virtual machines (VMs) across **Google Cloud (GCP)**, **Ama
 | --------------------- | ------------------------------------------ |
 | IaC                   | Terraform                                  |
 | Credential Management | Environment variables / `terraform.tfvars` |
-| Provider Support      | GCP, AWS, Oracle (OCI)                     |
+| Provider Support      | GCP, AWS, Azure                            |
 | Provisioning Logic    | `count`, `for_each`, modules               |
 | Optional Enhancements | SSH bootstrap (Ansible or cloud-init)      |
 | Networking            | Cloud-specific VPC/Subnet provisioning     |
