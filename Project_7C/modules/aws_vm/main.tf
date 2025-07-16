@@ -18,10 +18,31 @@ resource "aws_vpc" "vm_vpc" {
 }
 
 resource "aws_subnet" "vm_subnet" {
-  vpc_id            = aws_vpc.vm_vpc.id
-  cidr_block        = "10.10.1.0/24"
-  availability_zone = "${var.aws_region}a"
-  tags              = merge(var.tags, { Name = "${var.tags.project}-subnet" })
+  vpc_id                  = aws_vpc.vm_vpc.id
+  cidr_block              = "10.10.1.0/24"
+  availability_zone       = "${var.aws_region}a"
+  map_public_ip_on_launch = true
+  tags                    = merge(var.tags, { Name = "${var.tags.project}-subnet" })
+}
+
+resource "aws_internet_gateway" "vm_igw" {
+  vpc_id = aws_vpc.vm_vpc.id
+  tags   = merge(var.tags, { Name = "${var.tags.project}-igw" })
+}
+
+resource "aws_route_table" "vm_rt" {
+  vpc_id = aws_vpc.vm_vpc.id
+  tags   = merge(var.tags, { Name = "${var.tags.project}-rt" })
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.vm_igw.id
+  }
+}
+
+resource "aws_route_table_association" "vm_rta" {
+  subnet_id      = aws_subnet.vm_subnet.id
+  route_table_id = aws_route_table.vm_rt.id
 }
 
 ###############################################################################
@@ -30,7 +51,7 @@ resource "aws_subnet" "vm_subnet" {
 
 resource "aws_security_group" "vm_sg" {
   name_prefix = "${var.tags.project}-sg-"
-  description = "Security group for single‑VM lab"
+  description = "Security group for single VM lab"
   vpc_id      = aws_vpc.vm_vpc.id
 
   ingress {
@@ -45,7 +66,7 @@ resource "aws_security_group" "vm_sg" {
     description = "Allow all outbound"
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"           # -1 == all protocols
+    protocol    = "-1" # -1 == all protocols
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -67,7 +88,7 @@ resource "aws_key_pair" "vm_key" {
 
 resource "aws_instance" "vm" {
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t2.micro"          # Free‑tier eligible
+  instance_type          = "t2.micro" # Free‑tier eligible
   subnet_id              = aws_subnet.vm_subnet.id
   vpc_security_group_ids = [aws_security_group.vm_sg.id]
   key_name               = aws_key_pair.vm_key.key_name
@@ -77,7 +98,7 @@ resource "aws_instance" "vm" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners      = ["099720109477"]          # Canonical
+  owners      = ["099720109477"] # Canonical
 
   filter {
     name   = "name"

@@ -12,7 +12,6 @@ variable "labels" {
 resource "google_compute_network" "vm_net" {
   name                    = "${var.labels.project}-net"
   auto_create_subnetworks = false
-  project                 = google_client_config.project
 }
 
 resource "google_compute_subnetwork" "vm_subnet" {
@@ -39,7 +38,7 @@ resource "google_compute_firewall" "vm_fw" {
 # Instance.
 resource "google_compute_instance" "vm" {
   name         = "${var.labels.project}-gcp-vm"
-  machine_type = "e2-micro"   # Free‑tier
+  machine_type = "e2-micro" # Free‑tier
   zone         = "${var.gcp_region}-a"
 
   tags = ["${var.labels.project}-vm"]

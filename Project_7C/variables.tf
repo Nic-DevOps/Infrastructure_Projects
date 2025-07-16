@@ -65,11 +65,13 @@ variable "azure_region" {
 variable "azure_subscription_id" {
   description = "Azure Subscription UUID."
   type        = string
+  default     = null
 }
 
 variable "azure_tenant_id" {
   description = "Azure Tenant (AAD) UUID."
   type        = string
+  default     = null
 }
 
 # ───────── SSH Key ─────────
