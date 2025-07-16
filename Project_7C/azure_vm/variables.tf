@@ -1,0 +1,1 @@
+# Variables defined in main.tf, split here if you prefer modular separation.
