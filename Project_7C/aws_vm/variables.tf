@@ -1,0 +1,1 @@
+# Variables are declared at top of main.tf for brevity; split here if preferred.
