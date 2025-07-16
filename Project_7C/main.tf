@@ -54,7 +54,12 @@ provider "azurerm" {
 
 locals {
   # Common metadata tags / labels applied to all resources, keeping naming     
-  # consistent across clouds.                                                 
+  # consistent across clouds.   
+  # Locals are read-only variables computed at plan-time. Here you keep one source of 
+  # truth for tags/labels so every resource in every provider stays in sync. 
+  # If you add another common value (e.g. cost_center), put it here and all modules 
+  # receive it automatically.                                              
+  
   common_tags = {
     project     = var.project_name
     environment = var.environment

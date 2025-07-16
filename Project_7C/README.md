@@ -211,7 +211,3 @@ aws_region = "us‑east‑1"   # overrides the default
 4. Ensure `terraform fmt` & `terraform validate` pass.
 
 ---
-
-## License
-
-This project is licensed under the **MIT License**—see [`LICENSE`](LICENSE) for details.
