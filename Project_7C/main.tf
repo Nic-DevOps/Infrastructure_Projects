@@ -13,6 +13,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
   }
 }
 
@@ -25,6 +30,14 @@ provider "aws" {
   region = var.aws_region
   # profile, assume_role, etc. can be added here.
 }
+
+
+provider "google" {
+  project = var.gcp_project_id # e.g. "my‑tf‑lab‑123456"
+  region  = var.gcp_region     # e.g. "us‑central1"
+  # zone    = var.gcp_zone       # e.g. "us‑central1‑a"
+}
+
 
 ###############################################################################
 # Local Values                                                                #
