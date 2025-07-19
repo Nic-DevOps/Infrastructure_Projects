@@ -8,6 +8,11 @@ variable "labels" {
   type = map(string)
 }
 
+
+###############################################################################
+# Networking – VPC + Subnet                                                   #
+###############################################################################
+
 # Reserve a small VPC network.
 resource "google_compute_network" "vm_net" {
   name                    = "${var.labels.project}-net"
@@ -35,7 +40,10 @@ resource "google_compute_firewall" "vm_fw" {
   target_tags   = ["${var.labels.project}-vm"]
 }
 
-# Instance.
+###############################################################################
+# Instance                                                                 #
+###############################################################################
+
 resource "google_compute_instance" "vm" {
   name         = "${var.labels.project}-gcp-vm"
   machine_type = "e2-micro" # Free‑tier
@@ -66,6 +74,10 @@ resource "google_compute_instance" "vm" {
 
   labels = var.labels
 }
+
+###############################################################################
+# Outputs                                                                     #
+###############################################################################
 
 output "public_ip" {
   value = google_compute_instance.vm.network_interface[0].access_config[0].nat_ip

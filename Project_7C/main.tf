@@ -18,6 +18,11 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 5.0"
     }
+
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -33,11 +38,16 @@ provider "aws" {
 
 
 provider "google" {
-  project = var.gcp_project_id # e.g. "my‑tf‑lab‑123456"
-  region  = var.gcp_region     # e.g. "us‑central1"
-  # zone    = var.gcp_zone       # e.g. "us‑central1‑a"
+  project = var.gcp_project_id
+  region  = var.gcp_region
+  # zone    = var.gcp_zone       
 }
 
+provider "azurerm" {
+  features {} # keep defaults
+  subscription_id = var.azure_subscription_id
+  tenant_id       = var.azure_tenant_id
+}
 
 ###############################################################################
 # Local Values                                                                #
@@ -81,14 +91,16 @@ module "gcp_vm" {
   labels      = local.common_tags
 }
 
-# module "azure_vm" {
-#  source = "./modules/azure_vm"
-#  count  = var.deploy_azure ? 1 : 0
-
-#  azure_region = var.azure_region
-#  ssh_pub_key  = var.ssh_pub_key
-#  tags         = local.common_tags
-# }
+module "azure_vm" {
+  source         = "./modules/azure_vm"
+  count          = var.deploy_azure ? 1 : 0
+  admin_username = var.admin_username
+  azure_region   = var.azure_region
+  azure_vm_size  = var.azure_vm_size
+  image          = var.image
+  ssh_pub_key    = var.ssh_pub_key
+  tags           = local.common_tags
+}
 
 ###############################################################################
 # Outputs                                                                     #
@@ -104,7 +116,7 @@ output "gcp_public_ip" {
   value       = try(module.gcp_vm[0].public_ip, null)
 }
 
-# output "azure_public_ip" {
-#  description = "Public IPv4 address of the Azure VM."
-#  value       = try(module.azure_vm[0].public_ip, null)
-# }
+output "azure_public_ip" {
+  description = "Public IPv4 address of the Azure VM."
+  value       = try(module.azure_vm[0].public_ip, null)
+}

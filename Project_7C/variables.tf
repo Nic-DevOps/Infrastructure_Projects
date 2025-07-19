@@ -39,12 +39,17 @@ variable "owner" {
 }
 
 # ───────── Cloud‑specific Inputs ─────────
+
+
+# AWS
 variable "aws_region" {
   description = "AWS region for EC2 instance (e.g., us‑west‑2)."
   type        = string
   default     = "us‑west‑2"
 }
 
+
+# GCP
 variable "gcp_region" {
   description = "GCP region for Compute Engine instance (e.g., us‑west1)."
   type        = string
@@ -56,10 +61,30 @@ variable "gcp_project_id" {
   type        = string
 }
 
+
+#Azure
+
 variable "azure_region" {
   description = "Azure region for the VM (e.g., eastus)."
   type        = string
-  default     = "australiaeast"
+  default     = "eastus2"
+}
+
+variable "image" {
+  description = "Map describing the image to use"
+  type        = map(string)
+  default = {
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
+    version   = "latest"
+  }
+}
+
+variable "azure_vm_size" {
+  description = "VM SKU, e.g. Standard_B1s"
+  type        = string
+  default     = "Standard_B1s"
 }
 
 variable "azure_subscription_id" {
@@ -72,6 +97,12 @@ variable "azure_tenant_id" {
   description = "Azure Tenant (AAD) UUID."
   type        = string
   default     = null
+}
+
+variable "admin_username" {
+  description = "Linux admin user"
+  type        = string
+  default     = "ubuntu"
 }
 
 # ───────── SSH Key ─────────
