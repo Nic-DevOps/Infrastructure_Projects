@@ -1,0 +1,1 @@
+https://slurm.schedmd.com/quickstart_admin.html

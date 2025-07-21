@@ -9,3 +9,5 @@ Resources:
 https://grafana.com/grafana/dashboards/4323-slurm-dashboard
 
 https://grafana.com/docs/learning-journeys/linux-server-integration/
+
+https://slurm.schedmd.com/quickstart.html
