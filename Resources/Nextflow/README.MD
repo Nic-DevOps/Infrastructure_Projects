@@ -1,0 +1,1 @@
+https://training.nextflow.io/2.1.6/hello_nextflow/06_hello_config
