@@ -15,6 +15,13 @@ variable "deploy_gcp" {
   default     = true
 }
 
+variable "gcp_vm_count" {
+  description = "Number of GCP VMs to provision"
+  type        = number
+  default     = 1
+}
+
+
 variable "deploy_azure" {
   description = "Set to true to deploy resources on Azure."
   type        = bool

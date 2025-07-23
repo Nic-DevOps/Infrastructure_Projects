@@ -7,37 +7,24 @@ variable "ssh_pub_key" {}
 variable "labels" {
   type = map(string)
 }
-
-
-###############################################################################
-# Networking – VPC + Subnet                                                   #
-###############################################################################
-
-# Reserve a small VPC network.
-resource "google_compute_network" "vm_net" {
-  name                    = "${var.labels.project}-net"
-  auto_create_subnetworks = false
+variable "network_id" {
+  description = "ID of the shared VPC network"
+  type        = string
 }
 
-resource "google_compute_subnetwork" "vm_subnet" {
-  name          = "${var.labels.project}-subnet"
-  ip_cidr_range = "10.20.1.0/24"
-  network       = google_compute_network.vm_net.id
-  region        = var.gcp_region
+variable "subnet_id" {
+  description = "ID of the shared subnet"
+  type        = string
 }
 
-# Allow SSH ingress via firewall rule.
-resource "google_compute_firewall" "vm_fw" {
-  name    = "${var.labels.project}-allow-ssh"
-  network = google_compute_network.vm_net.name
+variable "firewall_tag" {
+  description = "Tag for assigning firewall rules"
+  type        = string
+}
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22", "80"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["${var.labels.project}-vm"]
+variable "instance_index" {
+  description = "Index of the instance when module is counted"
+  type        = number
 }
 
 
@@ -46,11 +33,11 @@ resource "google_compute_firewall" "vm_fw" {
 ###############################################################################
 
 resource "google_compute_instance" "vm" {
-  name         = "${var.labels.project}-gcp-vm"
-  machine_type = "e2-micro" # Free‑tier
+  name         = "${var.labels.project}-gcp-vm-${var.instance_index}"
+  machine_type = "e2-micro"
   zone         = "${var.gcp_region}-a"
 
-  tags = ["${var.labels.project}-vm"]
+  tags = [var.firewall_tag]
 
   boot_disk {
     initialize_params {
@@ -60,21 +47,19 @@ resource "google_compute_instance" "vm" {
   }
 
   network_interface {
-    network    = google_compute_network.vm_net.id
-    subnetwork = google_compute_subnetwork.vm_subnet.id
+    network    = var.network_id
+    subnetwork = var.subnet_id
 
-    access_config {
-      # Ephemeral public IP
-    }
+    access_config {}
   }
 
   metadata = {
-    # Inject SSH key.
     ssh-keys = "ubuntu:${var.ssh_pub_key}"
   }
 
   labels = var.labels
 }
+
 
 ###############################################################################
 # Outputs                                                                     #

@@ -69,6 +69,37 @@ locals {
 }
 
 ###############################################################################
+# GCP Networking – VPC + Subnet                                                   #
+###############################################################################
+
+# Reserve a small VPC network.
+resource "google_compute_network" "vm_net" {
+  name                    = "${local.common_tags.project}-net"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "vm_subnet" {
+  name          = "${local.common_tags.project}-subnet"
+  ip_cidr_range = "10.20.1.0/24"
+  network       = google_compute_network.vm_net.id
+  region        = var.gcp_region
+}
+
+# Allow SSH ingress via firewall rule.
+resource "google_compute_firewall" "vm_fw" {
+  name    = "${local.common_tags.project}-allow-ssh"
+  network = google_compute_network.vm_net.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["${local.common_tags.project}-vm"]
+}
+
+###############################################################################
 # Module Calls                                                                #
 ###############################################################################
 
@@ -84,11 +115,15 @@ module "aws_vm" {
 
 module "gcp_vm" {
   source = "./modules/gcp_vm"
-  count  = var.deploy_gcp ? 1 : 0
-
+  count  = var.deploy_gcp ? var.gcp_vm_count : 0
+  instance_index = count.index
   gcp_region  = var.gcp_region
   ssh_pub_key = var.ssh_pub_key
   labels      = local.common_tags
+
+  network_id   = google_compute_network.vm_net.id
+  subnet_id    = google_compute_subnetwork.vm_subnet.id
+  firewall_tag = "${local.common_tags.project}-vm"
 }
 
 module "azure_vm" {
@@ -113,7 +148,7 @@ output "aws_public_ip" {
 
 output "gcp_public_ip" {
   description = "Public IPv4 address of the GCP Compute Engine instance."
-  value       = try(module.gcp_vm[0].public_ip, null)
+  value       = [for i in module.gcp_vm : i.public_ip]
 }
 
 output "azure_public_ip" {

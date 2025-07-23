@@ -61,15 +61,15 @@ resource "azurerm_network_security_group" "nsg" {
   }
 
   security_rule { # ← NEW rule
-    name                   = "HTTP"
-    priority               = 110
-    direction              = "Inbound"
-    access                 = "Allow"
-    protocol               = "Tcp"
-    source_address_prefix  = "*"
-    source_port_range      = "*"
-    destination_address_prefix = "*" 
-    destination_port_range = 80
+    name                       = "HTTP"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_address_prefix      = "*"
+    source_port_range          = "*"
+    destination_address_prefix = "*"
+    destination_port_range     = 80
   }
 }
 
