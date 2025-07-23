@@ -207,11 +207,5 @@ aws_region = "us‑east‑1"   # overrides the default
 
 ---
 
-## Contributing
-
-1. Fork the repo & create a feature branch.
-2. Commit changes with clear messages.
-3. Open a pull request; describe *why* the change matters.
-4. Ensure `terraform fmt` & `terraform validate` pass.
-
----
+# Updates 
+- 2025-07-23: Added a count variable so I can create multiple vm's just on GCP. This is in preperation to add monitoring.
