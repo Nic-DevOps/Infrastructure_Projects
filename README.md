@@ -58,11 +58,3 @@ A progressive project exploring Infrastructure as Code. Each project builds on t
 
 - Concepts: Production-grade infrastructure, security, modular architecture
 
-
-
-# Phase 2
-
-## Project G
-
-
-## Project K
